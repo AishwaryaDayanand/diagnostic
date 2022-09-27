@@ -52,6 +52,14 @@ class Appointment(models.Model):
         ('1PM', 'Afternoon'),
         ('4 PM', 'Evening')
     )
+    STATUS = (
+        ('booked' , 'booked'),
+        ('completed', 'completed'),
+        ('approved', 'approved'),
+        ('rejected', 'rejected'),
+        ('pending', 'pending'),
+
+    )
     appointment_id = models.IntegerField(models.AutoField, primary_key=True)
     user = models.ForeignKey(Customer, on_delete=models.CASCADE)
     branch = models.ForeignKey(Branch , on_delete = models.CASCADE)
@@ -61,7 +69,8 @@ class Appointment(models.Model):
     doctor_id = models.CharField(max_length = 10, null=True,blank=True)
     nurse_id = models.CharField(max_length= 10, null=True,blank=True)
     lab_technician = models.CharField(max_length = 10, null=True,blank=True)
-    # sample_collector = models.CharField(max_length=10, null=True,blank=True)
+    sample_collector = models.CharField(max_length=10, null=True,blank=True)
+    status = models.CharField(choices = STATUS , default = 'pending',max_length=100 )
 
     def __str__(self):
         return self.appointment_id

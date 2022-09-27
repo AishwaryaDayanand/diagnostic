@@ -1,9 +1,11 @@
 from django.urls import path
-from .views import user_obj, user_obj
+from .views import RegisterEmployee,RegisterCustomer
 urlpatterns = [
     # path('admin/', admin.site.urls),
     # path('users/',include('users.urls'))
-    path('' ,user_obj,name='users' ),
+    path('register-customer/' ,RegisterCustomer.as_view(),name='register-customer' ),
+    path('register-employee/' ,RegisterEmployee.as_view(),name='register-employee' ),
+
    
 ]
 
